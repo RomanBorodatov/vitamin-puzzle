@@ -1,4 +1,5 @@
 const canBeSwaped = (vitamin, destColor, arr) => {
+	
 	const isMaxi = (vitamin, arr) => {
 		let color = vitamin.color;
 		let num = vitamin.name
@@ -35,7 +36,24 @@ const canBeSwaped = (vitamin, destColor, arr) => {
 	return (isMaxi(vitamin, arr) && willBeMaxi(vitamin, destColor, arr))
 };
 
-const colorSwap = (vitamin, destColor, arr, movesLog=[]) => {
+const determineDestColor = (vitamin, destColor) => {
+	const possibleColors = ['W', 'G', 'B'];
+	if (destColor === 'W'|'G'|'B'){
+		return destColor;
+	}
+	else {
+		let newPossibleColors = possibleColors.filter((color) => {
+			if (color != vitamin.color && color != vitamin.prevColor){
+				return true;
+			}
+			return false
+		})
+		return newPossibleColors[0];	
+	}
+};
+
+const colorSwap = (vitamin, destColor, arr) => {
+	destColor = determineDestColor(destColor);
 	if (canBeSwaped(vitamin, destColor, arr) && destColor != vitamin.prevColor) {
 		const newArr = arr.map((item) => {
 			if (item.name === vitamin.name) {
@@ -43,13 +61,18 @@ const colorSwap = (vitamin, destColor, arr, movesLog=[]) => {
 			}
 			return item;
 		});
-		movesLog.push([vitamin.name, vitamin.color, destColor]);
-
-		return { arr: newArr, movesLog };
+		return newArr;
 	}
+	return false;
 }
 
-const universalHanoi = (data) => {
+const isWhite = (vitamin) => {
+	if (vitamin.color === "W"){
+		return true;
+	}
+};
+
+const transformData = (data) => {
 	let arr = data.split(" ");
 	let vitaminsArray = arr.map((vitamin) => {
 		return {
@@ -58,14 +81,11 @@ const universalHanoi = (data) => {
 			prevColor: ""
 		}
 	});
+	return vitaminsArray;
+}
 
-	const isWhite = (vitamin) => {
-		if (vitamin.color === "W"){
-			return true;
-		}
-	};
-	
-	console.log(colorSwap(vitaminsArray[2], 'B', vitaminsArray));	
+const universalHanoi = (data) => {
+		
 };
 
-universalHanoi("3B 4B 5W");
+console.log(transformData("3B 4G 5B"));
