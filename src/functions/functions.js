@@ -11,7 +11,7 @@ export const canBeSwaped = (vitamin, destColor, arr) => {
 			return false
 		});
 
-		if (toCheck.length != 0){
+		if (toCheck.length !== 0){
 			return false
 		}
 		return true
@@ -27,7 +27,7 @@ export const canBeSwaped = (vitamin, destColor, arr) => {
 			return false
 		});
 
-		if (toCheck.length != 0){
+		if (toCheck.length !== 0){
 			return false
 		}
 		return true
@@ -46,11 +46,11 @@ export const colorSwap = (vitamin, destColor, arr) => {
 	return newArr;
 }
 
-const isWhite = (vitamin) => {
-	if (vitamin.color === "W"){
-		return true;
-	}
-};
+// const isWhite = (vitamin) => {
+// 	if (vitamin.color === "W"){
+// 		return true;
+// 	}
+// };
 
 export const transformData = (data) => {
 	let arr = data.split(" ");

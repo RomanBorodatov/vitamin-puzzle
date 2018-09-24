@@ -19,7 +19,6 @@ class Visual extends Component {
 				prevColor: ""
 			}
 		});
-		console.log(vitaminsArray);
 		this.setState({figures: vitaminsArray})
 	}
 	componentDidUpdate(oldProps) {
