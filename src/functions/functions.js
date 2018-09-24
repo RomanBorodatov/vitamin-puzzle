@@ -1,4 +1,4 @@
-const canBeSwaped = (vitamin, destColor, arr) => {
+export const canBeSwaped = (vitamin, destColor, arr) => {
 	
 	const isMaxi = (vitamin, arr) => {
 		let color = vitamin.color;
@@ -36,7 +36,7 @@ const canBeSwaped = (vitamin, destColor, arr) => {
 	return (isMaxi(vitamin, arr) && willBeMaxi(vitamin, destColor, arr) && vitamin.prevColor !== destColor)
 };
 
-const colorSwap = (vitamin, destColor, arr) => {
+export const colorSwap = (vitamin, destColor, arr) => {
 	const newArr = arr.map((item) => {
 		if (item.name === vitamin.name) {
 			item = { ...item, prevColor: item.color, color: destColor};
@@ -52,7 +52,7 @@ const isWhite = (vitamin) => {
 	}
 };
 
-const transformData = (data) => {
+export const transformData = (data) => {
 	let arr = data.split(" ");
 	let vitaminsArray = arr.map((vitamin) => {
 		return {

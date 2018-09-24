@@ -22,7 +22,6 @@ const startHanoi = (data) => {
 	let movesLog = [];
 	if (vitaminsArray[vitaminsArray.length-1].color !== undefined) {
 		let movesLog = hanoi(max, count, source, aux, destination);
-		console.log(movesLog);
 		return movesLog;
 	}
 	return movesLog;

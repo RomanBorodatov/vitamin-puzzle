@@ -19,6 +19,7 @@ class Visual extends Component {
 				prevColor: ""
 			}
 		});
+		console.log(vitaminsArray);
 		this.setState({figures: vitaminsArray})
 	}
 	componentDidUpdate(oldProps) {
@@ -35,14 +36,43 @@ class Visual extends Component {
 		}
 	}
 
-	generatePolygon = () => {
+	generatePolygon = (sidesCount, color) => {
+		const radius = 50;
+		const angle = 0;
 
+		const top = 100;
+		const left = 100;
+		const points = [];
+		const fac = 2 * Math.PI / sidesCount;
+
+		let fill = 'white'
+	    if (color === 'G') {
+	      fill = 'lightgrey'
+	    }
+	    if (color === 'B') {
+	      fill = 'black'
+	    }
+
+		for (let i = 0; i < sidesCount; i++) {
+			const x = left + radius * Math.cos(i * fac + angle / 180 * Math.PI);
+			const y = top + radius *Math.sin(i * fac + angle / 180 * Math.PI);
+			points.push(`${x},${y}`);
+		}
+		const path = points.join(' ');
+
+		return (
+			<svg width={200} height={200} fill={fill} stroke='#111' strokeWidth='1' key={sidesCount}>
+      			<polygon points={path}/>
+      		</svg>
+      	)
 	};
 
   	render() {
     	return (
       		<div>
-      			
+      			{this.state.figures.map((figure) => {
+      		 		return this.generatePolygon(figure.name, figure.color)
+      			})}
       		</div>
     	);
   	}
