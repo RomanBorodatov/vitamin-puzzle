@@ -1,4 +1,4 @@
-export const canBeSwaped = (vitamin, destColor, arr) => {
+const canBeSwaped = (vitamin, destColor, arr) => {
 	
 	const isMaxi = (vitamin, arr) => {
 		let color = vitamin.color;
@@ -33,46 +33,26 @@ export const canBeSwaped = (vitamin, destColor, arr) => {
 		return true
 	};
 
-	return (isMaxi(vitamin, arr) && willBeMaxi(vitamin, destColor, arr))
+	return (isMaxi(vitamin, arr) && willBeMaxi(vitamin, destColor, arr) && vitamin.prevColor !== destColor)
 };
 
-export const determineDestColor = (vitamin, destColor) => {
-	const possibleColors = ['W', 'G', 'B'];
-	if (destColor === 'W'|'G'|'B'){
-		return destColor;
-	}
-	else {
-		let newPossibleColors = possibleColors.filter((color) => {
-			if (color != vitamin.color && color != vitamin.prevColor){
-				return true;
-			}
-			return false
-		})
-		return newPossibleColors[0];	
-	}
-};
-
-export const colorSwap = (vitamin, destColor, arr) => {
-	destColor = determineDestColor(destColor);
-	if (canBeSwaped(vitamin, destColor, arr) && destColor != vitamin.prevColor) {
-		const newArr = arr.map((item) => {
-			if (item.name === vitamin.name) {
-				item = { ...item, prevColor: item.color, color: destColor};
-			}
-			return item;
-		});
-		return newArr;
-	}
-	return false;
+const colorSwap = (vitamin, destColor, arr) => {
+	const newArr = arr.map((item) => {
+		if (item.name === vitamin.name) {
+			item = { ...item, prevColor: item.color, color: destColor};
+		}
+		return item;
+	});
+	return newArr;
 }
 
-export const isWhite = (vitamin) => {
+const isWhite = (vitamin) => {
 	if (vitamin.color === "W"){
 		return true;
 	}
 };
 
-export const transformData = (data) => {
+const transformData = (data) => {
 	let arr = data.split(" ");
 	let vitaminsArray = arr.map((vitamin) => {
 		return {
@@ -83,4 +63,3 @@ export const transformData = (data) => {
 	});
 	return vitaminsArray;
 }
-

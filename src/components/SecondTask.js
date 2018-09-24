@@ -6,7 +6,7 @@ class SecondTask extends Component {
     return (
       <div className="second-task">
       	Second!
-      	<Visual/>
+      	<Visual input="3B 4B 5B"/>
       </div>
     );
   }

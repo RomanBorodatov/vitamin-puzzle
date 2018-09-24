@@ -10,7 +10,6 @@ const startHanoi = (data) => {
 	let possibleColors = ["W", "G", "B"];
 
 	let max = vitaminsArray.length+2;
-	console.log(max);
 	let count = 3;
 	let source = vitaminsArray[0].color;
 	let destination = 'W';

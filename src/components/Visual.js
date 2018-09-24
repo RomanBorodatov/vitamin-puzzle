@@ -7,11 +7,11 @@ class Visual extends Component {
 			figures: [],
 		}
 
-		this.generatePolygons = this.generatePolygons.bind(this);
+		this.generatePolygon = this.generatePolygon.bind(this);
 	};
 
 	componentDidMount() {
-		let arr = data.split(" ");
+		let arr = this.props.input.split(" ");
 		let vitaminsArray = arr.map((vitamin) => {
 			return {
 				name: vitamin.split("")[0],
@@ -22,8 +22,8 @@ class Visual extends Component {
 		this.setState({figures: vitaminsArray})
 	}
 	componentDidUpdate(oldProps) {
-		if(opldProps.input !== this.props.input) {
-			let arr = data.split(" ");
+		if(oldProps.input !== this.props.input) {
+			let arr = this.props.input.split(" ");
 			let vitaminsArray = arr.map((vitamin) => {
 				return {
 					name: vitamin.split("")[0],
@@ -34,6 +34,10 @@ class Visual extends Component {
 			this.setState({figures: vitaminsArray})
 		}
 	}
+
+	generatePolygon = () => {
+
+	};
 
   	render() {
     	return (
